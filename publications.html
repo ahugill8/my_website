@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publications — Your Name</title>
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:ital,wght@1,400;1,500&family=Caveat:wght@500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="nav__name">Your Name</a>
+    <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    <ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="publications.html" aria-current="page">Publications</a></li>
+      <li><a href="editorial.html">Editorial</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Publications</span>
+      <h1>Where My Work Has Appeared</h1>
+      <p class="lede" style="max-width:640px;">Each logo below links out to the publication.
+      On desktop they circle around the center; on phones they switch to a
+      simple grid automatically. Add, remove, or relink them in the HTML —
+      see INSTRUCTIONS.md.</p>
+
+      <!-- DESKTOP: circling logos. JS in script.js spaces these evenly
+           around the circle — just add/remove .pub-logo <a> blocks and it
+           re-spaces automatically. Swap each src for the real logo file,
+           and each href for the real published piece's URL. -->
+      <div class="pub-orbit" style="margin-top:56px;">
+        <div class="pub-orbit__center">My Work</div>
+
+        <a class="pub-logo" href="#" target="_blank" rel="noopener" title="Publication 1">
+          <img src="images/publications/logo-1.svg" alt="Publication 1 logo">
+        </a>
+        <a class="pub-logo" href="#" target="_blank" rel="noopener" title="Publication 2">
+          <img src="images/publications/logo-2.svg" alt="Publication 2 logo">
+        </a>
+        <a class="pub-logo" href="#" target="_blank" rel="noopener" title="Publication 3">
+          <img src="images/publications/logo-3.svg" alt="Publication 3 logo">
+        </a>
+        <a class="pub-logo" href="#" target="_blank" rel="noopener" title="Publication 4">
+          <img src="images/publications/logo-4.svg" alt="Publication 4 logo">
+        </a>
+        <a class="pub-logo" href="#" target="_blank" rel="noopener" title="Publication 5">
+          <img src="images/publications/logo-5.svg" alt="Publication 5 logo">
+        </a>
+        <a class="pub-logo" href="#" target="_blank" rel="noopener" title="Publication 6">
+          <img src="images/publications/logo-6.svg" alt="Publication 6 logo">
+        </a>
+      </div>
+
+      <!-- MOBILE: simple grid version (hidden on desktop via CSS) -->
+      <div class="pub-grid">
+        <a class="pub-card" href="#" target="_blank" rel="noopener">
+          <img src="images/publications/logo-1.svg" alt="Publication 1 logo">
+          <span>Publication 1</span>
+        </a>
+        <a class="pub-card" href="#" target="_blank" rel="noopener">
+          <img src="images/publications/logo-2.svg" alt="Publication 2 logo">
+          <span>Publication 2</span>
+        </a>
+        <a class="pub-card" href="#" target="_blank" rel="noopener">
+          <img src="images/publications/logo-3.svg" alt="Publication 3 logo">
+          <span>Publication 3</span>
+        </a>
+        <a class="pub-card" href="#" target="_blank" rel="noopener">
+          <img src="images/publications/logo-4.svg" alt="Publication 4 logo">
+          <span>Publication 4</span>
+        </a>
+        <a class="pub-card" href="#" target="_blank" rel="noopener">
+          <img src="images/publications/logo-5.svg" alt="Publication 5 logo">
+          <span>Publication 5</span>
+        </a>
+        <a class="pub-card" href="#" target="_blank" rel="noopener">
+          <img src="images/publications/logo-6.svg" alt="Publication 6 logo">
+          <span>Publication 6</span>
+        </a>
+      </div>
+
+      <!-- Text list version — also always visible for accessibility/SEO -->
+      <div class="pub-list">
+        <a href="#" target="_blank" rel="noopener">
+          <img src="images/publications/logo-1.svg" alt="">
+          <span>"Piece Title" — Publication 1</span>
+        </a>
+        <a href="#" target="_blank" rel="noopener">
+          <img src="images/publications/logo-2.svg" alt="">
+          <span>"Piece Title" — Publication 2</span>
+        </a>
+        <a href="#" target="_blank" rel="noopener">
+          <img src="images/publications/logo-3.svg" alt="">
+          <span>"Piece Title" — Publication 3</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; <span id="year"></span> Your Name. Built with care, published on GitHub Pages.</p>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
