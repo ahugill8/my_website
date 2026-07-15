@@ -1,0 +1,724 @@
+/* =========================================================================
+   SITE STYLE SHEET
+   -------------------------------------------------------------------------
+   Everything you'd want to customize lives in the ":root" block right below.
+   Change a value there and it updates everywhere on the site automatically.
+   See INSTRUCTIONS.md for a plain-language guide to editing this file.
+   ========================================================================= */
+
+:root {
+  /* ---- COLORS ---------------------------------------------------------
+     Charcoal + light rose + clean cream, pulled from your color palette
+     photo. Charcoal carries the "functional" elements (buttons, links,
+     nav state); rose carries the "soft/decorative" ones (eyebrows, help
+     tab, dividers) — the two interchange across the site the way you
+     asked. Swap any hex below to retune either color everywhere at once. */
+  --color-bg: #F7F2EA;          /* main page background — clean, chic cream */
+  --color-bg-alt: #EFE7D8;      /* secondary panels / cards */
+  --color-ink: #2C2A27;         /* primary text */
+  --color-ink-soft: #6B6659;    /* secondary / muted text (footer, captions) */
+  --color-charcoal: #33312D;    /* charcoal accent — buttons, links, nav */
+  --color-charcoal-dark: #201F1C; /* hover state for charcoal */
+  --color-rose: #D8A79B;        /* light rose accent — eyebrows, help tab, dividers */
+  --color-rose-dark: #C68F82;   /* hover/deeper state for rose */
+  --color-accent: var(--color-charcoal);       /* default "functional" accent */
+  --color-accent-dark: var(--color-charcoal-dark);
+  --color-line: #DCD2BF;        /* borders, dividers, dashed placeholder frames */
+  --color-white: #FFFDF9;
+
+  /* ---- FONTS ------------------------------------------------------------
+     Loaded from Google Fonts in each HTML file's <head>. Swap names here
+     AND in every HTML file's <link> tag to change them — see
+     INSTRUCTIONS.md.
+       - display/body (Archivo): nav name, section subheads, and regular
+         paragraph text — the clean structural sans that carries most of
+         the site.
+       - nav (Lora): the Home/About/Publications/... links in the top nav.
+       - title (Caveat): every page's big H1 title — handwritten/scribble,
+         kept fairly bold and a bit smaller than a typical H1.
+       - accent (Newsreader italic): one emphasized line per page (the help
+         tab message, page intro lines) — the flowing italic touch.
+       - hand (Caveat): handwritten scribbles — photo captions, small
+         doodle-style labels. Same family as --font-title, used at smaller
+         sizes.
+       - mono (Courier Prime): footer, CV dates, telegram/document-style
+         text. */
+  --font-display: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-nav: 'Lora', Georgia, serif;
+  --font-title: 'Caveat', cursive;
+  --font-accent: 'Newsreader', Georgia, serif;
+  --font-hand: 'Caveat', cursive;
+  --font-mono: 'Courier Prime', 'Courier New', monospace;
+
+  /* ---- LAYOUT ---- */
+  --max-width: 1100px;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { max-width: 100%; display: block; }
+
+a { color: var(--color-accent); text-decoration: none; }
+a:hover { color: var(--color-accent-dark); text-decoration: underline; }
+
+h1, h2, h3 {
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+}
+
+h2, h3 { font-family: var(--font-display); }
+
+/* Page titles — handwritten/scribble, bold, and intentionally smaller
+   than a typical H1 so it reads as a personal signature rather than a
+   corporate headline. */
+h1 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 1em; }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 72px 0;
+}
+
+.section--alt {
+  background: var(--color-bg-alt);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  color: var(--color-rose-dark);
+  font-weight: 600;
+  margin-bottom: 0.75em;
+  display: block;
+}
+
+/* "Lede" — the one flowing italic-serif line under a page's H1, used
+   sparingly (one per page) the way your vibe photo uses it: "Take a
+   break.", "Peruse the mood," "Indisputably, it is time." */
+.lede {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--color-ink);
+  line-height: 1.45;
+}
+
+/* ---- NAVIGATION --------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(247, 242, 234, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+.nav__name:hover { text-decoration: none; color: var(--color-accent); }
+
+.nav__links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__links a {
+  font-family: var(--font-nav);
+  color: var(--color-ink);
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+}
+
+.nav__links a:hover,
+.nav__links a[aria-current="page"] {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom-color: var(--color-accent);
+}
+
+.nav__toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: var(--color-ink);
+}
+
+@media (max-width: 720px) {
+  .nav__toggle { display: block; }
+  .nav__links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-bg);
+    flex-direction: column;
+    gap: 0;
+    border-bottom: 1px solid var(--color-line);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .nav__links.is-open { max-height: 320px; }
+  .nav__links a {
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--color-line);
+    display: block;
+  }
+}
+
+/* ---- FOOTER --------------------------------------------------------- */
+
+.site-footer {
+  padding: 40px 0;
+  text-align: center;
+  color: var(--color-ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.site-footer a { color: var(--color-ink-soft); }
+
+/* ---- BUTTONS / LINKS -------------------------------------------------- */
+
+.btn {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--color-accent);
+  cursor: pointer;
+}
+.btn:hover { background: var(--color-accent-dark); border-color: var(--color-accent-dark); text-decoration: none; color: var(--color-white); }
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+}
+.btn--outline:hover { background: var(--color-ink); color: var(--color-white); }
+
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 1.5em;
+}
+
+/* =========================================================================
+   HOME PAGE
+   ========================================================================= */
+
+.hero {
+  padding: 80px 0 40px;
+  text-align: center;
+}
+
+.hero__intro {
+  max-width: 640px;
+  margin: 0 auto 48px;
+}
+
+/* ---- Envelope photo lineup ---------------------------------------------
+   A row of envelopes — some tall/vertical, some wide/horizontal, one
+   upside-down, one opening to the side — each with a photo peeking out
+   the flap. Colors alternate rose / charcoal / cream per envelope. */
+
+.envelope-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 34px;
+  max-width: 900px;
+  margin: 20px auto 0;
+  padding: 70px 0 50px; /* room for photos peeking above + captions below */
+}
+
+.envelope-wrap {
+  position: relative;
+  transition: transform 0.25s ease;
+}
+.envelope-wrap:hover { transform: translateY(-6px); }
+
+.envelope {
+  position: absolute;
+  inset: 0;
+  box-shadow: 0 14px 30px rgba(43, 42, 40, 0.16);
+}
+
+.envelope--rose     { background: var(--color-rose); }
+.envelope--charcoal { background: var(--color-charcoal); }
+.envelope--cream    { background: var(--color-white); border: 1px solid var(--color-line); }
+
+/* Flap opens upward */
+.envelope--top { clip-path: polygon(0% 22%, 50% 0%, 100% 22%, 100% 100%, 0% 100%); }
+/* Flap opens downward (upside-down) */
+.envelope--bottom { clip-path: polygon(0% 0%, 100% 0%, 100% 78%, 50% 100%, 0% 78%); }
+/* Flap opens to the right (on its side) */
+.envelope--right { clip-path: polygon(0% 0%, 78% 0%, 100% 50%, 78% 100%, 0% 100%); }
+
+.envelope__photo {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 4px solid var(--color-white);
+  box-shadow: 0 10px 20px rgba(43, 42, 40, 0.24);
+  z-index: 2;
+}
+.envelope__photo img { display: block; width: 100%; }
+
+.ep-top    { left: 50%; top: -36%; width: 64%; transform: translateX(-50%) rotate(-4deg); }
+.ep-bottom { left: 50%; bottom: -36%; width: 64%; transform: translateX(-50%) rotate(3deg); }
+.ep-right  { top: 50%; right: -30%; width: 56%; transform: translateY(-50%) rotate(6deg); }
+
+.envelope__caption {
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: -38px;
+  transform: translateX(-50%) rotate(-2deg);
+  width: max-content;
+  max-width: 140px;
+  text-align: center;
+  line-height: 1.15;
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  color: var(--color-ink-soft);
+  z-index: 3;
+}
+
+/* Sizes + individual tilt per envelope */
+.ew-1 { width: 130px; height: 200px; }                        /* vertical, top flap */
+.ew-2 { width: 220px; height: 140px; transform: rotate(-4deg); margin-bottom: 18px; } /* horizontal, top flap */
+.ew-3 { width: 170px; height: 190px; transform: rotate(3deg); }  /* upside-down */
+.ew-4 { width: 210px; height: 150px; transform: rotate(-6deg); margin-bottom: 10px; } /* opens to the side */
+
+@media (max-width: 720px) {
+  .envelope-row { gap: 50px 28px; padding-top: 50px; }
+  .ew-1, .ew-2, .ew-3, .ew-4 { transform: none; margin-bottom: 0; }
+  .envelope-wrap:hover { transform: none; }
+}
+
+/* ---- Help tab ---- */
+
+.help-tab {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(calc(100% - 44px));
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  background: var(--color-rose);
+  color: var(--color-ink);
+  border-radius: 10px 0 0 10px;
+  box-shadow: -6px 0 18px rgba(0,0,0,0.18);
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  border: none;
+  padding: 0;
+  font-family: var(--font-body);
+  max-width: 320px;
+}
+
+.help-tab.is-open {
+  transform: translateY(-50%) translateX(0);
+}
+
+.help-tab__label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: 18px 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.help-tab__message {
+  padding: 18px 20px 18px 4px;
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: 1.1rem;
+  text-align: left;
+  line-height: 1.35;
+}
+
+@media (max-width: 720px) {
+  .help-tab { max-width: 260px; }
+  .help-tab__message { font-size: 0.85rem; padding: 14px 16px 14px 4px; }
+}
+
+/* =========================================================================
+   ABOUT PAGE
+   ========================================================================= */
+
+/* Telegram — replaces the old ticket graphic. Typewriter/document styling
+   (Courier Prime) on a cream card, per your telegram reference photo. */
+.telegram {
+  background: var(--color-white);
+  border: 2px solid var(--color-charcoal);
+  border-radius: 4px;
+  max-width: 520px;
+  padding: 26px 30px 30px;
+  box-shadow: 0 14px 32px rgba(43, 42, 40, 0.16);
+  transform: rotate(-1deg);
+}
+
+.telegram__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  border-bottom: 3px double var(--color-charcoal);
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+}
+
+.telegram__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+}
+
+.telegram__tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-rose-dark);
+  white-space: nowrap;
+}
+
+.telegram__field {
+  display: flex;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--color-line);
+}
+
+.telegram__label {
+  font-weight: 700;
+  color: var(--color-charcoal);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.telegram__value { color: var(--color-ink); text-transform: uppercase; }
+
+.telegram__message {
+  margin: 16px 0 0;
+  padding-top: 14px;
+  border-top: 1px dashed var(--color-line);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.75;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+@media (max-width: 480px) {
+  .telegram { padding: 20px 20px 24px; }
+  .telegram__header { flex-direction: column; align-items: flex-start; gap: 4px; }
+}
+
+.video-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-ink);
+}
+.video-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 1.5em;
+}
+
+.socials a {
+  border: 1px solid var(--color-line);
+  padding: 8px 18px;
+  border-radius: 999px;
+  color: var(--color-ink);
+  font-size: 0.9rem;
+}
+.socials a:hover { border-color: var(--color-rose-dark); color: var(--color-rose-dark); text-decoration: none; }
+
+/* =========================================================================
+   PUBLICATIONS PAGE
+   ========================================================================= */
+
+/* Film-reel disc: a solid cream disc (.pub-orbit) with a rotating
+   sprocket-tab ring (.pub-orbit__reel) behind it. Logos sit on top and
+   stay still/upright/clickable — only the ring spins. */
+.pub-orbit {
+  position: relative;
+  max-width: 620px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: var(--color-white);
+  border: 6px solid var(--color-bg-alt);
+  box-shadow: 0 20px 44px rgba(43, 42, 40, 0.16);
+}
+
+.pub-orbit__reel {
+  position: absolute;
+  inset: 10px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    var(--color-rose) 0deg 5deg,
+    transparent 5deg 24deg,
+    var(--color-charcoal) 24deg 29deg,
+    transparent 29deg 48deg
+  );
+  -webkit-mask: radial-gradient(circle, transparent 62%, #000 63%, #000 72%, transparent 73%);
+          mask: radial-gradient(circle, transparent 62%, #000 63%, #000 72%, transparent 73%);
+  animation: pub-reel-spin 50s linear infinite;
+}
+
+@keyframes pub-reel-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.pub-orbit__center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-3deg);
+  text-align: center;
+  max-width: 200px;
+  font-family: var(--font-hand);
+  font-size: 1.6rem;
+  color: var(--color-rose-dark);
+}
+
+.pub-logo {
+  position: absolute;
+  width: 92px;
+  height: 92px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--color-white);
+  box-shadow: 0 10px 24px rgba(43,42,40,0.16);
+  border: 3px solid var(--color-white);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.pub-logo:hover { transform: scale(1.08); box-shadow: 0 14px 30px rgba(43,42,40,0.24); }
+.pub-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+@media (max-width: 720px) {
+  .pub-orbit { display: none; }
+}
+
+.pub-grid {
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 720px) {
+  .pub-grid { display: grid; }
+}
+
+.pub-card {
+  text-align: center;
+  padding: 20px;
+  background: var(--color-white);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-line);
+}
+.pub-card img { width: 72px; height: 72px; margin: 0 auto 12px; border-radius: 10px; }
+.pub-card:hover { text-decoration: none; border-color: var(--color-rose-dark); }
+.pub-card span { display: block; color: var(--color-ink); font-weight: 600; font-size: 0.9rem; }
+
+/* also show a simple list version under the orbit on desktop, for accessibility */
+.pub-list {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+.pub-list a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  color: var(--color-ink);
+}
+.pub-list a:hover { border-color: var(--color-rose-dark); text-decoration: none; }
+.pub-list img { width: 40px; height: 40px; border-radius: 8px; flex-shrink: 0; }
+
+/* =========================================================================
+   EDITORIAL PAGE
+   ========================================================================= */
+
+.editorial-hero {
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+
+.editorial-list {
+  display: grid;
+  gap: 20px;
+}
+
+.editorial-item {
+  padding: 24px;
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+}
+
+.editorial-item h3 { margin-bottom: 0.3em; }
+.editorial-item .eyebrow { margin-bottom: 0.4em; }
+
+/* =========================================================================
+   CV PAGE
+   ========================================================================= */
+
+.cv-bio { margin: 4px 0 28px; }
+.cv-bio p {
+  margin: 0 0 6px;
+  color: var(--color-ink-soft);
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+.cv-section { margin-bottom: 40px; }
+.cv-section h2 {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-rose);
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+.cv-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-line);
+}
+.cv-item:last-child { border-bottom: none; }
+.cv-item__year { color: var(--color-ink-soft); font-family: var(--font-mono); font-size: 0.85rem; white-space: nowrap; }
+
+/* =========================================================================
+   CONTACT PAGE
+   ========================================================================= */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+@media (max-width: 820px) { .contact-grid { grid-template-columns: 1fr; } }
+
+.photobooth {
+  max-width: 320px;
+  margin: 0 auto;
+  border: 10px solid var(--color-white);
+  border-bottom-width: 30px;
+  box-shadow: 0 16px 36px rgba(43,42,40,0.2);
+  transform: rotate(2deg);
+}
+
+.contact-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 1.5em;
+}
+.contact-form input,
+.contact-form textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--color-line);
+  background: var(--color-white);
+  color: var(--color-ink);
+}
+.contact-form textarea { min-height: 120px; resize: vertical; }
+
+/* The "Email: ..." line — a serif touch distinct from the plain body text,
+   with "Email" staying bold via the <strong> tag in the HTML. */
+.email-line {
+  font-family: var(--font-accent);
+  font-size: 1.05rem;
+  color: var(--color-ink);
+}
