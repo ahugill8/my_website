@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Abigail Rebordão</title>
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:ital,wght@1,400;1,500&family=Caveat:wght@500;600;700&family=Courier+Prime:wght@400;700&family=Lora:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="nav__name">Abigail Rebordão</a>
+    <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    <ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="editorial.html">Editorial</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="contact.html" aria-current="page">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Contact</span>
+      <h1>Get In Touch</h1>
+
+      <div class="contact-grid" style="margin-top:40px;">
+        <figure class="photobooth">
+          <img src="images/contact/photobooth.jpg" alt="Photo booth strip photos">
+        </figure>
+
+        <div>
+          <p class="lede">A line inviting people to reach out</p>
+
+          <p class="email-line">
+            <strong>For readings, editorial inquiries, collaborations, or general contact.</strong>
+          </p>
+
+          <div class="socials">
+            <a href="https://substack.com/@abigailrebordao/posts" target="_blank" rel="noopener">Substack</a>
+            <a href="https://www.instagram.com/abigailrebordao/?hl=en" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.linkedin.com/in/abigail-rebord%C3%A3o-hugill-5393ab255" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+
+          <!-- Contact form, wired to your Formspree endpoint — messages
+               submitted here are emailed straight to you. -->
+          <form class="contact-form" action="https://formspree.io/f/mpqvqqla" method="POST">
+            <input type="hidden" name="_subject" value="New message from your website">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Your email" required>
+            <textarea name="message" placeholder="Your message" required></textarea>
+            <button type="submit" class="btn">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>(c) 2026 Abigail Rebordão. Built with care.</p>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
